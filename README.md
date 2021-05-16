@@ -11,10 +11,10 @@ Build a timed coding quiz with multiple-choice questions that stores high scores
 
 ## Screen Shots
 
-- ### Main Page
+### Main Page
 ![Main Code Quiz Screenshot](./assets/images/main.jpg)
 
-- ### High Scores Page
+### High Scores Page
 ![High Scores Code Quiz Screenshot](./assets/images/highscores.jpg)
 
 
