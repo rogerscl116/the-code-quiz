@@ -11,11 +11,13 @@ body {
     height: 500px;
     border: 5px solid rgb(255, 102, 0);
     background-color: rgb(255, 201, 164);
+    border-radius: 5px;
 }
 
 #highscores {
     color:rgb(255, 102, 0);
 }
+
 #currentTime {
     float: right;
 }
@@ -24,11 +26,18 @@ body {
     background-color: rgb(255, 102, 0);
     color: black;
     margin: 50px;
-    padding: 10px 20px;
+    padding: 8px 18px;
     font-size: 20px;
 }
 
 #quizDiv {
     margin-top: 100px;
     margin-left: 100px;
+}
+
+#goBack, #clearScores {
+    background-color: rgb(255, 102, 0);
+    color: black;
+    padding: 5px 10px;
+    font-size: 18px;
 }

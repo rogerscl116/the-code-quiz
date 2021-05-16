@@ -75,6 +75,7 @@ function renderQuestion(questionIndex) {
     }
     quizChoices.forEach(function(newItem) {
         var listItem = document.createElement("li");
+        listItem.setAttribute("style", "color: rgb(255, 102, 0); margin: 20px; list-style-type: upper-alpha; cursor: pointer;")
         listItem.textContent = newItem;
         quizDiv.appendChild(ulCreate);
         ulCreate.appendChild(listItem);
@@ -94,11 +95,13 @@ function checkAnswer(event) {
         if (event.target.textContent == questions[questionIndex].a) {
             score++;
             createDiv.textContent = "Correct!";
+            createDiv.setAttribute("style", "font-weight: thick; font-style: italic; padding-top: 20px; color: green;")
         }
 
         // if answer is incorrect, subtract 10 seconds
         else {
             createDiv.textContent = "Incorrect!";
+            createDiv.setAttribute("style", "font-weight: thick; font-style: italic; padding-top: 20px; color: red;")
             timeRemaining = timeRemaining - penalty;
         }
     }
@@ -108,6 +111,7 @@ function checkAnswer(event) {
     if (questionIndex >= questions.length) {
         completeQuiz();
         createDiv.textContent = "You answered " + score + "/" + questions.length + " questions correct!";
+        createDiv.setAttribute("style", "font-weight: thick; font-style: italic; padding-top: 20px; color: rgb(255, 102, 0)")
     } else {
         renderQuestion(questionIndex);
     }
@@ -159,6 +163,7 @@ var createSubmit = document.createElement("button");
 createSubmit.setAttribute("type", "submit");
 createSubmit.setAttribute("id", "submit");
 createSubmit.textContent = "Submit";
+createSubmit.setAttribute("style", "background-color: rgb(255, 102, 0); color: black; margin: 20px; padding: 5px 10px; font-size: 20px;")
 quizDiv.appendChild(createSubmit);
 
 // add eventlistener for initials and score
