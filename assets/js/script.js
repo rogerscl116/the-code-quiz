@@ -105,10 +105,9 @@ function checkAnswer(event) {
     // determine number of question the user is on
     questionIndex++;
 
-    // fix bug here
     if (questionIndex >= questions.length) {
         completeQuiz();
-        createDiv.textContent = "You have answered " + score + "/" + questions.length + " questions correct!";
+        createDiv.textContent = "You answered " + score + "/" + questions.length + " questions correct!";
     } else {
         renderQuestion(questionIndex);
     }
@@ -153,6 +152,7 @@ var createInput = document.createElement("input");
 createInput.setAttribute("type", "text");
 createInput.setAttribute("id", "initials");
 createInput.textContent = "";
+quizDiv.appendChild(createInput);
 
 // create submit button for initials
 var createSubmit = document.createElement("button");
@@ -160,5 +160,34 @@ createSubmit.setAttribute("type", "submit");
 createSubmit.setAttribute("id", "submit");
 createSubmit.textContent = "Submit";
 quizDiv.appendChild(createSubmit);
-}
+
 // add eventlistener for initials and score
+createSubmit.addEventListener("click", function() {
+    var initials = createInput.value;
+
+    if (initials === null) {
+        console.log("No value entered.");
+}
+    else {
+    var finalScore = {
+        initials: initials,
+        score: timeLeft
+    }
+        console.log(finalScore);
+        var allScores = localStorage.getItem("allScores");
+        
+        if (allScores === null) {
+            allScores = [];
+        }
+        else {
+            allScores = JSON.parse(allScores)
+        }
+        allScores.push(finalScore);
+        var newScore = JSON.stringify(allScores);
+        localStorage.setItem("allScores", newScore);
+
+        // goes to high scores page
+        location.replace("highscores.html");
+    }
+});
+}
