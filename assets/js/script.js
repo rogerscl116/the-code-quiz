@@ -28,10 +28,43 @@ var questions = [
 ];
 
 // add declared variables
+var currentTime = document.querySelector("#currentTime");
+var timer = document.querySelector("#startTime");
+var quizDiv = document.querySelector("#quizDiv");
+var choices = document.querySelector("#choices");
+var container = document.querySelector("#container");
+var h1 = document.getElementsByTagName("h1");
+var p = document.getElementsByTagName("p");
+
+// set timer to 75
+var timeRemaining = 75;
+var timeInterval = 0;
+var questionIndex = 0;
+var score = 0;
+var penalty = 10;
+
+currentTime.textContent = "Assigned Time: " + timeRemaining + " seconds.";
 
 
 // create function to display the questions
-
+function renderQuestion(questionIndex) {
+    quizDiv.innerHTML = "";
+    h1.innerHTML = "";
+    choices.innerHTML = "";
+    // loop through each element of the array
+    for (var i = 0; i < questions.length; i++) {
+        var quizQuestion = questions[questionIndex].q;
+        var quizChoices = questions[questionIndex].c;
+        choices.textContent = quizQuestion;
+    }
+    quizChoices.forEach(function(listItem){
+        var li = document.createElement("li");
+        li.textContent = listItem;
+        quizDiv.appendChild(choices);
+        choices.appendChild(li);
+        li.addEventListener("click", checkAnswer);
+    })
+}
 
 // create function to check the answers
 
@@ -40,3 +73,19 @@ var questions = [
 
 
 // add event listener when user clicks start quiz
+timer.addEventListener("click", function(){
+
+    if (timeInterval === 0) {
+        timeInterval = setInterval(function(){
+            timeRemaining--;
+            currentTime.textContent = timeRemaining + " seconds left."
+
+            if (timeRemaining <= 0) {
+                clearInterval(timeInterval);
+                quizComplete();
+                currentTime.textContent = "Time is UP!"
+            }
+        }, 1000)
+    }
+    renderQuestion(questionIndex);
+});
