@@ -42,33 +42,53 @@ var timeInterval = 0;
 var questionIndex = 0;
 var score = 0;
 var penalty = 10;
+// create new ul element
+var ulCreate = document.createElement("ul");
 
 currentTime.textContent = "Assigned Time: " + timeRemaining + " seconds.";
+
+// add event listener when user clicks start quiz
+timer.addEventListener("click", function(){
+    if (timeInterval === 0) {
+        timeInterval = setInterval(function() {
+            timeRemaining--;
+            currentTime.textContent = timeRemaining + " seconds left."
+
+            if (timeRemaining <= 0) {
+                clearInterval(timeInterval);
+                completeQuiz();
+                currentTime.textContent = "Time is UP!"
+            }
+        }, 1000)
+    }
+    renderQuestion(questionIndex);
+});
 
 
 // create function to display the questions
 function renderQuestion(questionIndex) {
     quizDiv.innerHTML = "";
-    h1.innerHTML = "";
-    choices.innerHTML = "";
+    ulCreate.innerHTML = "";
     // loop through each element of the array
     for (var i = 0; i < questions.length; i++) {
         var quizQuestion = questions[questionIndex].q;
         var quizChoices = questions[questionIndex].c;
-        choices.textContent = quizQuestion;
+        quizDiv.textContent = quizQuestion;
     }
-    quizChoices.forEach(function(listItem){
-        var li = document.createElement("li");
-        li.textContent = listItem;
-        quizDiv.appendChild(choices);
-        choices.appendChild(li);
-        li.addEventListener("click", checkAnswer);
+    quizChoices.forEach(function(newItem) {
+        var listItem = document.createElement("li");
+        listItem.textContent = newItem;
+        quizDiv.appendChild(ulCreate);
+        ulCreate.appendChild(listItem);
+        listItem.addEventListener("click", checkAnswer);
     })
 }
 
 // create function to check the answers
 function checkAnswer(event) {
+    
     if (event.target.matches("li")) {
+
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
 
@@ -84,27 +104,20 @@ function checkAnswer(event) {
             timeRemaining = timeRemaining - penalty;
         }
     }
+    questionIndex++;
+
+    if (questionIndex >= questions.length) {
+        completeQuiz();
+        createDiv.textContent = "You have completed the quiz! You got " + score + "/" + questions.length + " answers correct.";
+    } else {
+        renderQuestion(questionIndex);
+    }
+    quizDiv.appendChild(createDiv);
 }
 
 // create function to append the last page
 function completeQuiz() {
-
+    
 }
+// replace time remaining with score
 
-// add event listener when user clicks start quiz
-timer.addEventListener("click", function(){
-
-    if (timeInterval === 0) {
-        timeInterval = setInterval(function(){
-            timeRemaining--;
-            currentTime.textContent = timeRemaining + " seconds left."
-
-            if (timeRemaining <= 0) {
-                clearInterval(timeInterval);
-                completeQuiz();
-                currentTime.textContent = "Time is UP!"
-            }
-        }, 1000)
-    }
-    renderQuestion(questionIndex);
-});
