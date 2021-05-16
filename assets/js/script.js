@@ -50,7 +50,7 @@ timer.addEventListener("click", function(){
     if (timeInterval === 0) {
         timeInterval = setInterval(function() {
             timeRemaining--;
-            currentTime.textContent = timeRemaining + " seconds left"
+            currentTime.textContent = timeRemaining + " seconds left";
 
             if (timeRemaining <= 0) {
                 clearInterval(timeInterval);
@@ -102,11 +102,13 @@ function checkAnswer(event) {
             timeRemaining = timeRemaining - penalty;
         }
     }
+    // determine number of question the user is on
     questionIndex++;
 
+    // fix bug here
     if (questionIndex >= questions.length) {
         completeQuiz();
-        createDiv.textContent = "You have completed the quiz! You answered " + score + "/" + questions.length + " questions correct.";
+        createDiv.textContent = "You have answered " + score + "/" + questions.length + " questions correct!";
     } else {
         renderQuestion(questionIndex);
     }
@@ -122,20 +124,41 @@ function completeQuiz() {
     // add heading element and append
     var createH1 = document.createElement("h1");
     createH1.setAttribute("id", "createH1");
-    createH1.textContent = "Finished!";
+    createH1.textContent = "Finished";
     quizDiv.appendChild(createH1);
 
     // add paragraph element and append
     var createP = document.createElement("p");
     createP.setAttribute("id", "createP");
     quizDiv.appendChild(createP);
-}
-// replace time remaining with score
 
+
+// replace time remaining with score
 if (timeRemaining >= 0) {
     var timeLeft = timeRemaining;
     var createP2 = document.createElement("p");
     clearInterval(timeInterval);
     createP.textContent = "Your final score is " + timeLeft + ".";
     quizDiv.appendChild(createP2);
+    }
+
+// create label for initials
+var createLabel = document.createElement("label");
+createLabel.setAttribute("id", "createLabel");
+createLabel.textContent = "Enter your initials: ";
+quizDiv.appendChild(createLabel);
+
+// create input for initials
+var createInput = document.createElement("input");
+createInput.setAttribute("type", "text");
+createInput.setAttribute("id", "initials");
+createInput.textContent = "";
+
+// create submit button for initials
+var createSubmit = document.createElement("button");
+createSubmit.setAttribute("type", "submit");
+createSubmit.setAttribute("id", "submit");
+createSubmit.textContent = "Submit";
+quizDiv.appendChild(createSubmit);
 }
+// add eventlistener for initials and score
