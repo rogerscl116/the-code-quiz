@@ -22,3 +22,6 @@ clearScores.addEventListener("click", function() {
 });
 
 // create eventlistener to go back to index page
+goBack.addEventListener("click", function() {
+    location.replace("index.html");
+});
