@@ -67,10 +67,29 @@ function renderQuestion(questionIndex) {
 }
 
 // create function to check the answers
+function checkAnswer(event) {
+    if (event.target.matches("li")) {
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
 
+        // if answer is correct
+        if (event.target.textContent == questions[questionIndex].a) {
+            score++;
+            createDiv.textContent = "Correct!";
+        }
+
+        // if answer is incorrect, subtract 10 seconds
+        else {
+            createDiv.textContent = "Incorrect!";
+            timeRemaining = timeRemaining - penalty;
+        }
+    }
+}
 
 // create function to append the last page
+function completeQuiz() {
 
+}
 
 // add event listener when user clicks start quiz
 timer.addEventListener("click", function(){
@@ -82,7 +101,7 @@ timer.addEventListener("click", function(){
 
             if (timeRemaining <= 0) {
                 clearInterval(timeInterval);
-                quizComplete();
+                completeQuiz();
                 currentTime.textContent = "Time is UP!"
             }
         }, 1000)
