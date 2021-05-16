@@ -33,8 +33,6 @@ var timer = document.querySelector("#startTime");
 var quizDiv = document.querySelector("#quizDiv");
 var choices = document.querySelector("#choices");
 var container = document.querySelector("#container");
-var h1 = document.getElementsByTagName("h1");
-var p = document.getElementsByTagName("p");
 
 // set timer to 75
 var timeRemaining = 75;
@@ -45,14 +43,14 @@ var penalty = 10;
 // create new ul element
 var ulCreate = document.createElement("ul");
 
-currentTime.textContent = "Assigned Time: " + timeRemaining + " seconds.";
+currentTime.textContent = "Assigned Time: " + timeRemaining + " seconds";
 
 // add event listener when user clicks start quiz
 timer.addEventListener("click", function(){
     if (timeInterval === 0) {
         timeInterval = setInterval(function() {
             timeRemaining--;
-            currentTime.textContent = timeRemaining + " seconds left."
+            currentTime.textContent = timeRemaining + " seconds left"
 
             if (timeRemaining <= 0) {
                 clearInterval(timeInterval);
@@ -108,7 +106,7 @@ function checkAnswer(event) {
 
     if (questionIndex >= questions.length) {
         completeQuiz();
-        createDiv.textContent = "You have completed the quiz! You got " + score + "/" + questions.length + " answers correct.";
+        createDiv.textContent = "You have completed the quiz! You answered " + score + "/" + questions.length + " questions correct.";
     } else {
         renderQuestion(questionIndex);
     }
@@ -117,7 +115,27 @@ function checkAnswer(event) {
 
 // create function to append the last page
 function completeQuiz() {
-    
+    // clear existing data
+    quizDiv.innerHTML = "";
+    currentTime.innerHTML = "";
+
+    // add heading element and append
+    var createH1 = document.createElement("h1");
+    createH1.setAttribute("id", "createH1");
+    createH1.textContent = "Finished!";
+    quizDiv.appendChild(createH1);
+
+    // add paragraph element and append
+    var createP = document.createElement("p");
+    createP.setAttribute("id", "createP");
+    quizDiv.appendChild(createP);
 }
 // replace time remaining with score
 
+if (timeRemaining >= 0) {
+    var timeLeft = timeRemaining;
+    var createP2 = document.createElement("p");
+    clearInterval(timeInterval);
+    createP.textContent = "Your final score is " + timeLeft + ".";
+    quizDiv.appendChild(createP2);
+}
