@@ -1,4 +1,4 @@
-#The Code Quiz
+# The Code Quiz
 
 ## Objective
 
@@ -11,10 +11,10 @@ Build a timed coding quiz with multiple-choice questions that stores high scores
 
 ## Screen Shots
 
-- 1. Main Page
+### Main Page
 ![Main Code Quiz Screenshot](./assets/images/main.jpg)
 
-- 2. High Scores Page
+### High Scores Page
 ![High Scores Code Quiz Screenshot](./assets/images/highscores.jpg)
 
 
