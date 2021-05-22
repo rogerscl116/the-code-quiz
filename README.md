@@ -9,7 +9,7 @@ Build a timed coding quiz with multiple-choice questions that stores high scores
 - Deployed application: [https://rogerscl116.github.io/the-code-quiz](https://rogerscl116.github.io/the-code-quiz)  
 - GitHub repository: [https://github.com/rogerscl116/the-code-quiz](https://github.com/rogerscl116/the-code-quiz)
 
-## Screen Shots
+## Screenshots
 
 ### Main Page
 ![Main Code Quiz Screenshot](./assets/images/main.jpg)
